@@ -22,9 +22,8 @@ System.register([], function (_export, _context) {
     return {
         setters: [],
         execute: function () {
-            __template = '<tab-box><tab-header>{{#cates}}<tab-item class="cur"data-id="{{cid}}"data-index="{{@index}}">{{name}}</tab-item>{{/cates}}</tab-header><tab-body>{{#cates}}<tab-block>{{content}}</tab-block>{{/cates}}</tab-body></tab-box>';
-            __cmp__importComponentStyle("tab-box{width:480px;height:360px;border:1px solid darkolivegreen;display:block}tab-box tab-header{height:60px;line-height:60px;display:flex}tab-box tab-header tab-item{flex:1;text-align:center;background:green}tab-box tab-header tab-item.cur{background:#fff}tab-box tab-body{height:300px;position:relative;display:block}tab-box tab-body tab-block{width:100%;height:100%;background:darkseagreen;box-sizing:border-box;border:10px solid #fff;position:absolute;z-index:1;top:0;padding:12px}", "TabBox");
-
+            __template = '<tab-box><tab-header>{{#cates}} {{#show}}<tab-item class="cur"data-id="{{cid}}"data-index="{{index}}">{{name}}</tab-item>{{/show}} {{^show}}<tab-item data-id="{{cid}}"data-index="{{index}}">{{name}}</tab-item>{{/show}} {{/cates}}</tab-header><tab-body>{{#cates}}<tab-block>{{content}}</tab-block>{{/cates}}</tab-body></tab-box>';
+            __cmp__importComponentStyle("tab-box{width:480px;height:360px;border:1px solid darkolivegreen;display:block;overflow:hidden}tab-box tab-header{height:60px;line-height:60px;display:flex}tab-box tab-header tab-item{flex:1;text-align:center;background:green}tab-box tab-header tab-item.cur{background:#fff}tab-box tab-body{height:300px;width:300%;display:flex;overflow:hidden;white-space:nowrap;font-size:0;transform:translate3d(0, 0, 0);transition:transform 0.5s}tab-box tab-body tab-block{height:100%;font-size:14px;flex:1;background:darkseagreen;box-sizing:border-box;border:10px solid #fff;padding:12px}", "TabBox");
             // 原型及生命周期方法
             proto = Object.create(HTMLElement.prototype, {
                 createdCallback: {
@@ -32,6 +31,23 @@ System.register([], function (_export, _context) {
                         console.log('created!');
                     }
                 },
+
+                attachedCallback: {
+                    value: function value() {
+                        console.log('attached!');
+                        this.items = this.querySelectorAll('tab-item');
+                        this.body = this.querySelector('tab-body');
+
+                        var that = this;
+                        this.addEventListener('click', function (e) {
+                            var target = e.target;
+                            if (target.tagName.toLowerCase() != 'tab-item') return;
+                            var index = e.target.dataset.index;
+                            that.switchItem(index);
+                        }, false);
+                    }
+                },
+
                 detachedCallback: {
                     value: function value() {
                         console.log('detached!');
@@ -48,19 +64,11 @@ System.register([], function (_export, _context) {
             });
 
 
-            proto.attachedCallback = function () {
-                console.log('attached!');
-                var that;
-                this.addEventListener('click', function (e) {
-                    var index = e.terget.dataSet.index;
-                    console.log(e);
-                    that.switchItem(index);
-                }, false);
-            };
-
             // 原型方法
             proto.switchItem = function (index) {
-                consolg.log(index);
+                this.querySelector('.cur').classList.remove('cur');
+                this.items[index].classList.add('cur');
+                this.body.style.webkitTransform = 'translate3d(' + -480 * index + 'px, 0, 0)';
             };
 
             // 原型方法
@@ -69,7 +77,7 @@ System.register([], function (_export, _context) {
             };
 
             // 注册自定义标签
-            TabBox = document.registerElement('tag-box', {
+            TabBox = document.registerElement('tab-box', {
                 prototype: proto
             });
 

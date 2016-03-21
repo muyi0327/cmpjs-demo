@@ -1,7 +1,13 @@
 <tab-box>
     <tab-header>
     {{#cates}}
-        <tab-item class="cur" data-id="{{cid}}" data-index="{{@index}}">{{name}}</tab-item>
+        {{#show}}
+        <tab-item class="cur" data-id="{{cid}}" data-index="{{index}}">{{name}}</tab-item>
+        {{/show}}
+
+        {{^show}}
+        <tab-item data-id="{{cid}}" data-index="{{index}}">{{name}}</tab-item>
+        {{/show}}
     {{/cates}}
     </tab-header>
     <tab-body>

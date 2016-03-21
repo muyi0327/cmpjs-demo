@@ -1,18 +1,34 @@
-
 // 原型及生命周期方法
 var proto = Object.create(HTMLElement.prototype, {
     createdCallback: {
-        value:function(){
+        value: function () {
             console.log('created!');
         }
     },
+
+    attachedCallback: {
+        value: function () {
+            console.log('attached!');
+            this.items = this.querySelectorAll('tab-item');
+            this.body = this.querySelector('tab-body');
+
+            var that=this;
+            this.addEventListener('click', function (e) {
+                var target = e.target;
+                if (target.tagName.toLowerCase() != 'tab-item') return;
+                var index = e.target.dataset.index;
+                that.switchItem(index);
+            }, false);
+        }
+    },
+
     detachedCallback: {
-        value:function(){
+        value: function () {
             console.log('detached!');
         }
     },
     attributeChangedCallback: {
-        value:function(attr, oldV, newV){
+        value: function (attr, oldV, newV) {
             console.log('attribute changed!');
             console.log(attr);
             console.log(oldV);
@@ -21,35 +37,28 @@ var proto = Object.create(HTMLElement.prototype, {
     }
 });
 
-proto.attachedCallback = function(){
-    console.log('attached!');
-    var that;
-    this.addEventListener('click', function(e){
-        var index = e.terget.dataSet.index;
-        console.log(e)
-        that.switchItem(index);
-    }, false);
-}
 
 // 原型方法
-proto.switchItem = function(index){
-    consolg.log(index);
+proto.switchItem = function (index) {
+    this.querySelector('.cur').classList.remove('cur');
+    this.items[index].classList.add('cur');
+    this.body.style.webkitTransform = 'translate3d('+(-480*index)+'px, 0, 0)';
 };
 
 // 原型方法
-proto.render = function(data){
+proto.render = function (data) {
     return Mustache.to_html(__template, data);
 };
 
 // 注册自定义标签
-var TabBox = document.registerElement('tag-box', {
+var TabBox = document.registerElement('tab-box', {
     prototype: proto
 });
 
 // 注册自定义标签
-['tab-header', 'tab-item', 'tab-body', 'tab-block'].forEach(function(tagName){
+['tab-header', 'tab-item', 'tab-body', 'tab-block'].forEach(function (tagName) {
     document.registerElement(tagName, {
-        prototype:  Object.create(HTMLElement.prototype)
+        prototype: Object.create(HTMLElement.prototype)
     });
 });
 
