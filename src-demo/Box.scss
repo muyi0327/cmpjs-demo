@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.new-box{
+    width: 100%;
+    min-height: 240px;
+    .new-content{
+        display: flex;
+        .dt{
+            flex-basis:100px;
+            &:after{
+                content:" "
+            }
+        }
+    }
+}

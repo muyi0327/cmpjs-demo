@@ -1,0 +1,5 @@
+<style src="./tab-box.scss" lang="sass"></style>
+
+<template src="./tab-box.tpl"></template>
+
+<script src="./tab-box.js"></script>

@@ -1,0 +1,38 @@
+tab-box{
+    width: 480px;
+    height: 360px;
+    border: 1px solid darkolivegreen;
+    display: block;
+    tab-header{
+        height: 60px;
+        line-height: 60px;
+        display: flex;
+        tab-item{
+            flex:1;
+            text-align: center;
+            background: green;
+            &.cur{
+                background: #fff;
+            }
+        }
+    }
+
+    tab-body{
+        height: 300px;
+        position: relative;
+        display: block;
+
+        tab-block{
+            width: 100%;
+            height: 100%;
+            background: darkseagreen;
+            box-sizing: border-box;
+            border: 10px solid #fff;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            padding: 12px;
+        }
+    }
+
+}

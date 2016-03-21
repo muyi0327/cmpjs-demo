@@ -1,0 +1,4 @@
+.idea/
+node_modules/
+custom-element/bower_components/
+test-cmp/node_modules/

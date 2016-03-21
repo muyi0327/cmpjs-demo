@@ -1,0 +1,5 @@
+<style src="./Box.scss" lang="sass"></style>
+
+<template src="./Box.tpl" lang="ejs"></template>
+
+<script src="./Box.ts" lang="ts"></script>

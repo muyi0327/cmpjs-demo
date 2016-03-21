@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>TabBox</title>
+    <script src="mustache.js"></script>
+    <script src="webcomponents-lite.js"></script>
+</head>
+<body>
+<tab-box></tab-box>
+<div id="wrap"></div>
+
+<script src="../dist/TabBox.umd.js"></script>
+<script>
+    var data = [{
+        cid: '001',
+        name: '电影',
+        content: '电影电影电影电影电影电影电影电影电影电影电影电影电影'
+    },{
+        cid: '002',
+        name: '电视剧',
+        content: '电视剧电视剧电视剧电视剧电视剧电视剧电视剧电视剧电视剧'
+    },{
+        cid: '003',
+        name: '综艺',
+        content: '综艺综艺综艺综艺综艺综艺综艺综艺综艺综艺综艺'
+    }];
+
+    var tabBox = new TabBox();
+
+    var html = tabBox.render({
+        cates: data
+    });
+
+    document.querySelector('#wrap').innerHTML = html;
+</script>
+</body>
+</html>
