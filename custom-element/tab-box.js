@@ -1,3 +1,4 @@
+
 // 原型及生命周期方法
 var proto = Object.create(HTMLElement.prototype, {
     createdCallback: {
@@ -11,6 +12,7 @@ var proto = Object.create(HTMLElement.prototype, {
             console.log('attached!');
             this.items = this.querySelectorAll('tab-item');
             this.body = this.querySelector('tab-body');
+            this.body.style.width = (this.items.length||1) * 100 + '%';
 
             var that=this;
             this.addEventListener('click', function (e) {
@@ -42,7 +44,9 @@ var proto = Object.create(HTMLElement.prototype, {
 proto.switchItem = function (index) {
     this.querySelector('.cur').classList.remove('cur');
     this.items[index].classList.add('cur');
-    this.body.style.webkitTransform = 'translate3d('+(-480*index)+'px, 0, 0)';
+    this.body.style.MozTransform = 'translate3d('+(-480*index)+'px, 0, 0)';
+    this.body.style.WebkitTransform = 'translate3d('+(-480*index)+'px, 0, 0)';
+    this.body.style.MsitTransform = 'translate3d('+(-480*index)+'px, 0, 0)';
 };
 
 // 原型方法

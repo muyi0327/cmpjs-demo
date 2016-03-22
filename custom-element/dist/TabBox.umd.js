@@ -30,7 +30,8 @@
         var head = document.getElementsByTagName("head")[0];
         head.appendChild(style);
     }
-    __cmp__importComponentStyle("tab-box{width:480px;height:360px;border:1px solid darkolivegreen;display:block;overflow:hidden}tab-box tab-header{height:60px;line-height:60px;display:flex}tab-box tab-header tab-item{flex:1;text-align:center;background:green}tab-box tab-header tab-item.cur{background:#fff}tab-box tab-body{height:300px;width:300%;display:flex;overflow:hidden;white-space:nowrap;font-size:0;transform:translate3d(0, 0, 0);transition:transform 0.5s}tab-box tab-body tab-block{height:100%;font-size:14px;flex:1;background:darkseagreen;box-sizing:border-box;border:10px solid #fff;padding:12px}", "TabBox");
+    __cmp__importComponentStyle("tab-box{width:480px;height:360px;border:1px solid darkolivegreen;display:block;overflow:hidden}tab-box tab-header{height:60px;line-height:60px;display:flex}tab-box tab-header tab-item{flex:1;text-align:center;background:green}tab-box tab-header tab-item.cur{background:#fff}tab-box tab-body{height:300px;overflow:hidden;display:block;font-size:0;white-space:nowrap;transform:translate3d(0, 0, 0);transition:transform 0.5s}tab-box tab-body tab-block{height:100%;width:480px;display:inline-block;font-size:14px;background:darkseagreen;box-sizing:border-box;border:10px solid #fff;padding:12px}", "TabBox");
+
     // 原型及生命周期方法
     var proto = Object.create(HTMLElement.prototype, {
         createdCallback: {
@@ -44,6 +45,7 @@
                 console.log('attached!');
                 this.items = this.querySelectorAll('tab-item');
                 this.body = this.querySelector('tab-body');
+                this.body.style.width = (this.items.length || 1) * 100 + '%';
 
                 var that = this;
                 this.addEventListener('click', function (e) {
@@ -74,7 +76,9 @@
     proto.switchItem = function (index) {
         this.querySelector('.cur').classList.remove('cur');
         this.items[index].classList.add('cur');
-        this.body.style.webkitTransform = 'translate3d(' + -480 * index + 'px, 0, 0)';
+        this.body.style.MozTransform = 'translate3d(' + -480 * index + 'px, 0, 0)';
+        this.body.style.WebkitTransform = 'translate3d(' + -480 * index + 'px, 0, 0)';
+        this.body.style.MsitTransform = 'translate3d(' + -480 * index + 'px, 0, 0)';
     };
 
     // 原型方法
