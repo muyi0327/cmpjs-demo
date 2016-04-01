@@ -5,8 +5,10 @@ module.exports = {
   "dest": "./dist",
   "format": "all",
   "entry": {
-    style: './tab-box.scss',
-    template: './tab-box.tpl',
-    script: './tab-box.js'
-  }
+    style: "sass!./tab-box.scss",
+    script: "./tab-box.js",
+    template: "./tab-box.html"
+  },
+  "importCss": false,
+  "version": "1.0.0"
 }

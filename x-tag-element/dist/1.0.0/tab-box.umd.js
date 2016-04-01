@@ -1,4 +1,16 @@
-define([], function () {
+(function (global, factory) {
+    if (typeof define === "function" && define.amd) {
+        define([], factory);
+    } else if (typeof exports !== "undefined") {
+        factory();
+    } else {
+        var mod = {
+            exports: {}
+        };
+        factory();
+        global.unknown = mod.exports;
+    }
+})(this, function () {
     'use strict';
 
     var __template = '<tab-box><tab-header>{{#cates}} {{#show}}<tab-item class="cur"data-id="{{cid}}"data-index="{{index}}">{{name}}</tab-item>{{/show}} {{^show}}<tab-item data-id="{{cid}}"data-index="{{index}}">{{name}}</tab-item>{{/show}} {{/cates}}</tab-header><tab-body>{{#cates}}<tab-block>{{content}}</tab-block>{{/cates}}</tab-body></tab-box>';
@@ -19,5 +31,33 @@ define([], function () {
         head.appendChild(style);
     }
     __cmp__importComponentStyle("tab-box{width:480px;height:360px;border:1px solid darkolivegreen;display:block;overflow:hidden}tab-box tab-header{height:60px;line-height:60px;display:flex}tab-box tab-header tab-item{flex:1;text-align:center;background:green}tab-box tab-header tab-item.cur{background:#fff}tab-box tab-body{height:300px;overflow:hidden;display:block;font-size:0;white-space:nowrap;transform:translate3d(0, 0, 0);transition:transform 0.5s}tab-box tab-body tab-block{height:100%;width:480px;display:inline-block;font-size:14px;background:darkseagreen;box-sizing:border-box;border:10px solid #fff;padding:12px}", "tab-box");
-    var a = 123;
+    xtag.register('x-foo', {
+        content: '<input />',
+        lifecycle: {
+            created: function created() {
+                this.xtag.input = this.querySelector('input');
+            }
+        },
+        accessors: {
+            disabled: {
+                // The `attribute` property links node.bar gets/sets to the bar="" attribute
+                attribute: {
+                    // Including the boolean property turns this into a boolean attribute/setter
+                    boolean: true,
+                    // The property field allows you reflect changes down to a cached node.
+                    // Notice the input element is cached to the `input` property in `created`
+                    property: 'input'
+                },
+                get: function get() {
+                    // do something when the getter is accessed
+                    console.log('get');
+                    console.log(this);
+                },
+                set: function set(value) {
+                    // act on the value being passed to the setter
+                    console.log('set');
+                }
+            }
+        }
+    });
 });

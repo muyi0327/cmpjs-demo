@@ -1,5 +1,5 @@
 xtag.register('x-foo', {
-    content: '?input /?',
+    content: '<input />',
     lifecycle:{
         created: function(){
             this.xtag.input = this.querySelector('input');
@@ -17,9 +17,12 @@ xtag.register('x-foo', {
             },
             get: function(){
                 // do something when the getter is accessed
+                console.log('get')
+                console.log(this)
             },
             set: function(value){
                 // act on the value being passed to the setter
+                console.log('set')
             }
         }
     }
