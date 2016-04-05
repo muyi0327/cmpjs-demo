@@ -2,3 +2,4 @@
 node_modules/
 custom-element/bower_components/
 test-cmp/node_modules/
+test-cmp-demo/node_modules/
