@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports={
-    "name": "test-cmp",
+    "name": "live",
     "version": "1.0.0",
     "dest": "./dist",
     "format": "all",
