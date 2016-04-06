@@ -1,5 +1,0 @@
-<style src="./src/test-cmp.scss" lang="sass"></style>
-
-<template src="./src/test-cmp.html"></template>
-
-<script src="./src/test-cmp.js" lang="es6"></script>

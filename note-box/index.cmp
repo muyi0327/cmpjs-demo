@@ -1,0 +1,5 @@
+<style src="./src/note-box.scss" lang="sass"></style>
+
+<template src="./src/note-box.html"></template>
+
+<script src="./src/note-box.js" lang="es6"></script>

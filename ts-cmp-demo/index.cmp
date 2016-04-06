@@ -1,5 +1,0 @@
-<style src="./src/live.scss" lang="sass"></style>
-
-<template src="./src/live.html"></template>
-
-<script src="./src/live.js" lang="es6"></script>

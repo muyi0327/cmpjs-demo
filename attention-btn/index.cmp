@@ -1,0 +1,5 @@
+<style src="./src/attention-btn.scss" lang="sass"></style>
+
+<template src="./src/attention-btn.html"></template>
+
+<script src="./src/attention-btn.js" lang="es6"></script>

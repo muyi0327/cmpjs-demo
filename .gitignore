@@ -1,5 +1,8 @@
-.idea/
 node_modules/
-custom-element/bower_components/
+.idea/
+.sass-cache/
+live-box/node_modules/
 test-cmp/node_modules/
-test-cmp-demo/node_modules/
+ts-cmp-demo/node_modules/
+server/node_modules/
+custom-element/bower_components/

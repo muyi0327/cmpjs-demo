@@ -1,0 +1,23 @@
+@function px2rem($px) {
+    @return $px / 75 * 2rem;
+}
+
+$red: #c33;
+
+attention-btn {
+    display: inline-block;
+    width: px2rem(80);
+    height: px2rem(32);
+    line-height: px2rem(32);
+    text-align: center;
+    border:1px solid $red;
+    border-radius: 5px;
+    color: $red;
+
+    i{
+        display: inline-block;
+        width: px2rem(18);
+        height: px2rem(18);
+        font-style: normal;
+    }
+}
