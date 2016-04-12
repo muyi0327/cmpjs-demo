@@ -11,7 +11,7 @@ var stateData = [{
 }];
 
 module.exports = xtag.register('attention-btn', {
-    content: '<i class="icon">+</i><span class="text"></span>',
+    content: '<i class="icon">+</i><span class="text">关注</span>',
     lifecycle: {
         created: function () {
             console.log('created!')
@@ -19,8 +19,6 @@ module.exports = xtag.register('attention-btn', {
         inserted: function () {
             console.log('inserted!')
             this.state = this.dataset.state;
-            this.originUrl = this.dataset.originUrl;
-            this.render();
         },
         removed: function () {
             console.log('removed!')
@@ -29,22 +27,21 @@ module.exports = xtag.register('attention-btn', {
             console.log(attrName + 'attributeChanged!')
             switch(attrName){
                 case 'data-state':
-                    this.state = newValue||0;
-                    this.render();
+                    this.render({state:newValue});
                     break;
             }
         }
     },
     methods: {
-        render: function () {
-            var state = this.state;
+        render: function (data) {
+            var state = data.state;
             this.querySelector('.text').innerText = stateData[state].text;
         }
     },
     events: {
         tap: function (e) {
             var that = this;
-            fetch(this.originUrl).then(function(res) {
+            fetch("http://localhost:3015/api/user/attention").then(function(res) {
                 console.log(res);
                 if (res.ok){
                     res.json().then(function (data) {
