@@ -1,5 +1,0 @@
-<style src="./src/live-box.scss" lang="sass"></style>
-
-<template src="./src/live-box.html"></template>
-
-<script src="./src/live-box.js" lang="es6"></script>

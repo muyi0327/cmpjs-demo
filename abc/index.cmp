@@ -1,0 +1,13 @@
+<style lang="sass">
+    .abc{
+
+    }
+</style>
+
+<template>
+    <abc></abc>
+</template>
+
+<script lang="es6">
+
+</script>

@@ -1,0 +1,5 @@
+<style src="./src/eee.scss" lang="sass"></style>
+
+<template src="./src/eee.html"></template>
+
+<script src="./src/eee.js" lang="es6"></script>
